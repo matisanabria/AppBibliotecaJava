@@ -100,9 +100,10 @@ public class Main {
         do {
             System.out.println("Escribe \"exit\" para salir.");
 
-            System.out.println("Ingrese ISBN de libro: ");
-            isbn = scanner.nextLine();
-            if (isbn.equals("exit")) return;
+        String isbn = pedirDato("Ingrese ISBN de libro: ");
+        if (isbn==null) return;
+        String id = pedirDato("Ingrese ID de usuario: ");
+        if (id==null) return;
 
         biblioteca.prestarLibro(isbn, id);
     }
