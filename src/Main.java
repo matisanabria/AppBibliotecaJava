@@ -95,8 +95,6 @@ public class Main {
     }
     static void menuPrestarLibro(){
         System.out.println("🔜 Prestar libro");
-        do {
-            System.out.println("Escribe \"exit\" para salir.");
 
         String isbn = pedirDato("Ingrese ISBN de libro: ");
         if (isbn==null) return;
