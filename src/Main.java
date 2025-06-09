@@ -108,17 +108,12 @@ public class Main {
 
         System.out.println("🔃 Registrar devolución\nEscribe \"exit\" para salir.");
 
-            System.out.println("Ingrese ISBN de libro: ");
-            isbn = scanner.nextLine();
-            if (isbn.equals("exit")) return;
+        String isbn = pedirDato("Ingrese ISBN de libro: ");
+        if (isbn==null) return;
+        String id = pedirDato("Ingrese ID de usuario: ");
+        if (id==null) return;
 
-            System.out.println("Ingrese ID de usuario: ");
-            id = scanner.nextLine();
-            if (id.equals("exit")) return;
-
-            dormir(3000);
-      biblioteca.devolverLibro(isbn,id);
-
+        biblioteca.devolverLibro(isbn,id);
     }
     static void menuListarLibrosDisponibles(){
         List<Libro> disponibles = biblioteca.listarLibrosDisponibles();
