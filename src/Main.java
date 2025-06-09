@@ -217,4 +217,24 @@ public class Main {
         System.out.println("\n🔸 Presione Enter para continuar...");
         scanner.nextLine();
     }
+
+    static String pedirDato(String mensaje){
+        String input;
+
+        do {
+            // Imprime mensaje y recibe input.
+            System.out.print(mensaje);
+            input = scanner.nextLine().trim();
+
+            // Si escribe "exit" termina la función
+            if (input.equalsIgnoreCase("exit")) return null;
+            // Mensaje si está vacío.
+            if (input.isEmpty()) {
+                System.out.println("❌ No puedes dejar vacío este campo.");
+            }
+
+        } while (input.isEmpty()); // Si está vacío volver a pedir.
+
+        return input;
+    }
 }
