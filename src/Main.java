@@ -88,7 +88,7 @@ public class Main {
         if (nombre==null) return;
         String id = pedirDato("Ingrese ID: ");
         if (id==null) return;
-        
+
         Usuario usuario = new Usuario(nombre, id);
         biblioteca.registrarUsuario(usuario);
         dormir(1500);
