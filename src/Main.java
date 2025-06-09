@@ -141,10 +141,8 @@ public class Main {
         pausar();
     }
     static void menuHistorialDePrestamosUsuario() {
-        String id;
-        System.out.println("Ingrese ID de Usuario: ");
-        id = scanner.nextLine();
-        System.out.println(" ");
+        String isbn = pedirDato("Ingrese ID de usuario: ");
+        if (isbn==null) return;
 
         List<Prestamo> historial = biblioteca.historialDePrestamosUsuario(id);
         if (historial.isEmpty()){
