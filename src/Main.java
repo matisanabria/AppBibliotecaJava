@@ -94,8 +94,6 @@ public class Main {
         dormir(1500);
     }
     static void menuPrestarLibro(){
-        String isbn, id;
-
         System.out.println("🔜 Prestar libro");
         do {
             System.out.println("Escribe \"exit\" para salir.");
