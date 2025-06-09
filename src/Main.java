@@ -165,7 +165,7 @@ public class Main {
             e.printStackTrace();
         }
     }
-    static void pausar() {
+    static void enterParaContinuar() {
         System.out.println("\n🔸 Presione Enter para continuar...");
         scanner.nextLine();
     }
