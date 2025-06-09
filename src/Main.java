@@ -82,10 +82,7 @@ public class Main {
         dormir(1500);
     }
     static void menuRegistrarUsuario() {
-        String nombre, id;
-
-        do {
-            System.out.println("😀 Registrar nuevo usuario\n(Escriba \"exit\" para cancelar)");
+        System.out.println("😀 Registrar nuevo usuario\n(Escriba \"exit\" para cancelar)");
 
         String nombre = pedirDato("Ingrese nombre: ");
         if (nombre==null) return;
