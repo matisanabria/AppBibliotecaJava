@@ -104,12 +104,7 @@ public class Main {
             isbn = scanner.nextLine();
             if (isbn.equals("exit")) return;
 
-            System.out.println("Ingrese ID de usuario: ");
-            id = scanner.nextLine();
-            if (id.equals("exit")) return;
-
-            dormir (3000);
-        }while(!biblioteca.prestarLibro(isbn, id));
+        biblioteca.prestarLibro(isbn, id);
     }
     static void menuDevolverLibro(){
         String isbn, id;
