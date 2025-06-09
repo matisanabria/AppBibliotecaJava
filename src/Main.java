@@ -104,8 +104,6 @@ public class Main {
         biblioteca.prestarLibro(isbn, id);
     }
     static void menuDevolverLibro(){
-        String isbn, id;
-
         System.out.println("🔃 Registrar devolución\nEscribe \"exit\" para salir.");
 
         String isbn = pedirDato("Ingrese ISBN de libro: ");
