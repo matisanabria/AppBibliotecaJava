@@ -189,4 +189,15 @@ public class Main {
 
         return input;
     }
+
+    static void precargarDatos(){
+        Libro nuevoLibro = new Libro("La divina comedia", "Dante Alighieri", "1");
+        biblioteca.registrarLibro(nuevoLibro);
+        Libro nuevoLibro2 = new Libro("Don quijote de la mancha", "Miguel Cervantes", "2");
+        biblioteca.registrarLibro(nuevoLibro2);
+        Usuario nuevoUsuario = new Usuario("Matias Sanabria", "1");
+        biblioteca.registrarUsuario(nuevoUsuario);
+        Usuario nuevoUsuario2= new Usuario("Shawn Smith", "");
+        biblioteca.registrarUsuario(nuevoUsuario2);
+    }
 }
