@@ -73,25 +73,12 @@ public class Main {
         do {
             System.out.println("📙 Registrar nuevo libro\n(Escriba \"exit\" en cualquier campo para cancelar)\n");
 
-            System.out.print("Ingrese título: ");
-            titulo = scanner.nextLine();
-            scanner.nextLine();
-            if (titulo.equalsIgnoreCase("exit")) return;
-
-            System.out.print("Ingrese autor: ");
-            autor = scanner.nextLine();
-            if (autor.equalsIgnoreCase("exit")) return;
-
-            System.out.print("Ingrese ISBN: ");
-            isbn = scanner.nextLine();
-            if (isbn.equalsIgnoreCase("exit")) return;
-
-            if (titulo.isEmpty() || autor.isEmpty() || isbn.isEmpty()) {
-                System.out.println("❌ Todos los campos son obligatorios. Intente de nuevo.");
-                dormir(1000);
-            }
-
-        } while (titulo.isEmpty() || autor.isEmpty() || isbn.isEmpty());
+        String titulo = pedirDato("Ingrese título: ");
+        if (titulo==null) return;
+        String autor = pedirDato("Ingrese autor: ");
+        if (autor==null) return;
+        String isbn = pedirDato("Ingrese ISBN: ");
+        if (isbn==null) return;
 
         Libro libro = new Libro(titulo, autor, isbn);
         biblioteca.registrarLibro(libro);
