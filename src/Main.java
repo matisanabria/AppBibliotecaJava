@@ -10,7 +10,15 @@ public class Main {
 
         do {
             mostrarMenuPrincipal();
-            opcionUsuario= scanner.nextByte();
+            try {
+                opcionUsuario = scanner.nextByte();
+                scanner.nextLine(); // limpia buffer
+            } catch (Exception e) {
+                System.out.println("❌ Entrada inválida. Ingrese un número.");
+                scanner.nextLine(); // limpiar basura
+                dormir(1000);
+                continue; // vuelve al menú
+            }
             switch (opcionUsuario) {
                 case 1:
                     menuRegistrarLibro();
