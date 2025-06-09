@@ -106,9 +106,7 @@ public class Main {
     static void menuDevolverLibro(){
         String isbn, id;
 
-        System.out.println("🔃 Registrar devolución");
-        do {
-            System.out.println("Escribe \"exit\" para salir.");
+        System.out.println("🔃 Registrar devolución\nEscribe \"exit\" para salir.");
 
             System.out.println("Ingrese ISBN de libro: ");
             isbn = scanner.nextLine();
