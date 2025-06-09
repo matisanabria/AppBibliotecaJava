@@ -117,7 +117,7 @@ public class Main {
             if (id.equals("exit")) return;
 
             dormir(3000);
-        }while(!biblioteca.devolverLibro(isbn,id));
+      biblioteca.devolverLibro(isbn,id);
 
     }
     static void menuListarLibrosDisponibles(){
