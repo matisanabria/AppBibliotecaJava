@@ -87,21 +87,11 @@ public class Main {
         do {
             System.out.println("😀 Registrar nuevo usuario\n(Escriba \"exit\" para cancelar)");
 
-            System.out.print("Ingrese nombre: ");
-            nombre = scanner.nextLine();
-            if (nombre.equalsIgnoreCase("exit")) return;
-
-            System.out.print("Ingrese ID: ");
-            id = scanner.nextLine();
-            if (id.equalsIgnoreCase("exit")) return;
-
-            if (nombre.isEmpty() || id.isEmpty()) {
-                System.out.println("❌ Todos los campos son obligatorios. Intente de nuevo.");
-                dormir(1000);
-            }
-
-        } while (nombre.isEmpty() || id.isEmpty());
-
+        String nombre = pedirDato("Ingrese nombre: ");
+        if (nombre==null) return;
+        String id = pedirDato("Ingrese ID: ");
+        if (id==null) return;
+        
         Usuario usuario = new Usuario(nombre, id);
         biblioteca.registrarUsuario(usuario);
         dormir(1500);
