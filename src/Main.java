@@ -1,0 +1,220 @@
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    static Scanner scanner = new Scanner(System.in);
+    static Biblioteca biblioteca = new Biblioteca();
+    public static void main(String[] args) {
+        byte opcionUsuario = 0;
+
+        //  Agregamos nuevos usuarios
+        Libro nuevoLibro = new Libro("La divina comedia", "Dante Alighieri", "1");
+        biblioteca.registrarLibro(nuevoLibro);
+        Libro nuevoLibro2 = new Libro("Don quijote de la mancha", "Miguel Cervantes", "2");
+        biblioteca.registrarLibro(nuevoLibro2);
+        Usuario nuevoUsuario = new Usuario("Matias Sanabria", "1");
+        biblioteca.registrarUsuario(nuevoUsuario);
+        Usuario nuevoUsuario2= new Usuario("Shawn Smith", "");
+        biblioteca.registrarUsuario(nuevoUsuario2);
+
+        do {
+            mostrarMenuPrincipal();
+            opcionUsuario= scanner.nextByte();
+            switch (opcionUsuario) {
+                case 1:
+                    menuRegistrarLibro();
+                    break;
+                case 2:
+                    menuRegistrarUsuario();
+                    break;
+                case 3:
+                    menuPrestarLibro();
+                    break;
+                case 4:
+                    menuDevolverLibro();
+                    break;
+                case 5:
+                    menuListarLibrosDisponibles();
+                    break;
+                case 6:
+                    menuListarPrestamosActivos();
+                    break;
+                case 7:
+                    menuHistorialDePrestamosUsuario();
+                    break;
+                case 8:
+                    biblioteca.mostrarResumen();
+                    break;
+                default:
+                    System.out.println("❌ Opción inválida.\n");
+                    dormir(3000);
+
+            }
+        }while(opcionUsuario!=0);
+        System.out.println("👋 Cerrando programa.");
+    }
+    static void mostrarMenuPrincipal(){
+        System.out.println("==== Biblioteca ====\n");
+        System.out.println("1. Registrar libro");
+        System.out.println("2. Registrar usuario");
+        System.out.println("3. Prestar libro");
+        System.out.println("4. Devolver libro");
+        System.out.println("5. Listar libros disponibles");
+        System.out.println("6. Ver préstamos activos");
+        System.out.println("7. Ver historial de préstamos de usuario");
+        System.out.println("8. Ver resúmen general");
+        System.out.println("0. Salir");
+        System.out.println(" ");
+        System.out.print("->");
+    }
+    static void menuRegistrarLibro() {
+        String titulo, autor, isbn;
+
+        do {
+            System.out.println("📙 Registrar nuevo libro\n(Escriba \"exit\" en cualquier campo para cancelar)\n");
+
+            System.out.print("Ingrese título: ");
+            titulo = scanner.nextLine();
+            scanner.nextLine();
+            if (titulo.equalsIgnoreCase("exit")) return;
+
+            System.out.print("Ingrese autor: ");
+            autor = scanner.nextLine();
+            if (autor.equalsIgnoreCase("exit")) return;
+
+            System.out.print("Ingrese ISBN: ");
+            isbn = scanner.nextLine();
+            if (isbn.equalsIgnoreCase("exit")) return;
+
+            if (titulo.isEmpty() || autor.isEmpty() || isbn.isEmpty()) {
+                System.out.println("❌ Todos los campos son obligatorios. Intente de nuevo.");
+                dormir(1000);
+            }
+
+        } while (titulo.isEmpty() || autor.isEmpty() || isbn.isEmpty());
+
+        Libro libro = new Libro(titulo, autor, isbn);
+        biblioteca.registrarLibro(libro);
+        dormir(1500);
+    }
+    static void menuRegistrarUsuario() {
+        String nombre, id;
+
+        do {
+            System.out.println("😀 Registrar nuevo usuario\n(Escriba \"exit\" para cancelar)");
+
+            System.out.print("Ingrese nombre: ");
+            nombre = scanner.nextLine();
+            if (nombre.equalsIgnoreCase("exit")) return;
+
+            System.out.print("Ingrese ID: ");
+            id = scanner.nextLine();
+            if (id.equalsIgnoreCase("exit")) return;
+
+            if (nombre.isEmpty() || id.isEmpty()) {
+                System.out.println("❌ Todos los campos son obligatorios. Intente de nuevo.");
+                dormir(1000);
+            }
+
+        } while (nombre.isEmpty() || id.isEmpty());
+
+        Usuario usuario = new Usuario(nombre, id);
+        biblioteca.registrarUsuario(usuario);
+        dormir(1500);
+    }
+    static void menuPrestarLibro(){
+        String isbn, id;
+
+        System.out.println("🔜 Prestar libro");
+        do {
+            System.out.println("Escribe \"exit\" para salir.");
+
+            System.out.println("Ingrese ISBN de libro: ");
+            isbn = scanner.nextLine();
+            if (isbn.equals("exit")) return;
+
+            System.out.println("Ingrese ID de usuario: ");
+            id = scanner.nextLine();
+            if (id.equals("exit")) return;
+
+            dormir (3000);
+        }while(!biblioteca.prestarLibro(isbn, id));
+    }
+    static void menuDevolverLibro(){
+        String isbn, id;
+
+        System.out.println("🔃 Registrar devolución");
+        do {
+            System.out.println("Escribe \"exit\" para salir.");
+
+            System.out.println("Ingrese ISBN de libro: ");
+            isbn = scanner.nextLine();
+            if (isbn.equals("exit")) return;
+
+            System.out.println("Ingrese ID de usuario: ");
+            id = scanner.nextLine();
+            if (id.equals("exit")) return;
+
+            dormir(3000);
+        }while(!biblioteca.devolverLibro(isbn,id));
+
+    }
+    static void menuListarLibrosDisponibles(){
+        List<Libro> disponibles = biblioteca.listarLibrosDisponibles();
+
+        if(disponibles.isEmpty()){
+            System.out.println("❌ No hay libros disponibles;");
+        } else{
+            int i = 1;
+            System.out.println("✅ Libros disponibles");
+            for (Libro l : disponibles){
+                System.out.println(i++ +". " + l);
+            }
+        }
+        pausar();
+    }
+    static void menuListarPrestamosActivos(){
+        List<Prestamo> prestamos = biblioteca.listarPrestamosActivos();
+        if(prestamos.isEmpty()){
+            System.out.println("❌ No hay préstamos activos");
+        }else{
+            int i = 1;
+            System.out.println("✅ Préstamos activos");
+            for(Prestamo p: prestamos){
+                System.out.println(i++ + ". " + p);
+            }
+        }
+        pausar();
+    }
+    static void menuHistorialDePrestamosUsuario() {
+        String id;
+        System.out.println("Ingrese ID de Usuario: ");
+        id = scanner.nextLine();
+        System.out.println(" ");
+
+        List<Prestamo> historial = biblioteca.historialDePrestamosUsuario(id);
+        if (historial.isEmpty()){
+            System.out.println("❌ El usuario no tiene un historial");
+        }else{
+            int i = 1;
+            System.out.println("✅ Historial de usuario "+id);
+            for (Prestamo p : historial){
+                System.out.println(i++ + ". " + p);
+            }
+        }
+        pausar();
+
+    }
+
+    static void dormir(int ms){
+        try {
+            Thread.sleep(ms); // 1000ms = 1s
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    static void pausar() {
+        System.out.println("\n🔸 Presione Enter para continuar...");
+        scanner.nextLine();
+    }
+}
