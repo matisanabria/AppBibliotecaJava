@@ -68,10 +68,7 @@ public class Main {
         System.out.print("->");
     }
     static void menuRegistrarLibro() {
-        String titulo, autor, isbn;
-
-        do {
-            System.out.println("📙 Registrar nuevo libro\n(Escriba \"exit\" en cualquier campo para cancelar)\n");
+        System.out.println("📙 Registrar nuevo libro\n(Escriba \"exit\" en cualquier campo para cancelar)\n");
 
         String titulo = pedirDato("Ingrese título: ");
         if (titulo==null) return;
